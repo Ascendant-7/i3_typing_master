@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f8f9fb;
+        margin: 0;
+        padding: 0;
+        color: #333;
+      }
+
+      header {
+        background-color: #0077cc;
+        color: white;
+        padding: 20px;
+        text-align: center;
+      }
+
+      main {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 0 20px;
+      }
+
+      h2 {
+        color: #0077cc;
+        margin-bottom: 20px;
+      }
+
+      p {
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+
+      .team-section {
+        margin-top: 40px;
+      }
+
+      .team-members {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .member {
+        background: white;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        flex: 1 1 200px;
+        text-align: center;
+      }
+
+      .member h4 {
+        margin: 10px 0 5px;
+        color: #0077cc;
+      }
+
+      .member p {
+        margin: 0;
+        font-size: 14px;
+        color: #555;
+      }
+
+      @media (max-width: 600px) {
+        .team-members {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>About Us</h1>
+    </header>
+
+    <main>
+      <h2>Who We Are</h2>
+      <p>
+        We are a team of developers passionate about improving typing speed and
+        accuracy for learners and professionals alike. Our Typing Test App is
+        designed to help users improve their skills in a fun and interactive
+        way.
+      </p>
+
+      <p>
+        This project started as a simple tool to practice typing and has now
+        grown into a full-featured platform where you can track your progress,
+        challenge yourself, and become a faster, more confident typist.
+      </p>
+
+      <div class="team-section">
+        <h2>Meet the Team</h2>
+        <div class="team-members">
+          <div class="member">
+            <h4>Seyha</h4>
+            <p>Frontend Developer</p>
+          </div>
+          <div class="member">
+            <h4>CS</h4>
+            <p>Backend Developer</p>
+          </div>
+          <div class="member">
+            <h4>Cheang Seyha</h4>
+            <p>UI/UX Designer</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
