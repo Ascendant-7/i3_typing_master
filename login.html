@@ -4,17 +4,70 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login - Typing Master</title>
+    <style>
+      
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 100px;
+        padding: 0;
+        background-color: #eef2f5;
+        color: #333;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      /* input */
+
+      input {
+        padding: 12px 15px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        width: 100%;
+      }
+
+      button {
+        margin: auto;
+        padding: 12px 50px;
+        background-color: #0077cc;
+        color: white;
+        font-size: 16px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #005fa3;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+    </style>
   </head>
   <body>
     <h2>Login</h2>
-    <form action="login.html" method="POST">
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username" required />
-      <br />
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" required />
-      <br />
-      <input type="submit" value="Login" />
+    <form action="typing-test.html" method="POST">
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required />
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required />
+      </div>
+      <button type="submit">Login</button>
+      <div>
+        Forgot Password? <a href="resetpassword.html">Reset Here</a>
+      </div>
     </form>
   </body>
 </html>

@@ -29,7 +29,6 @@
       font-weight: bold;
     }
     #restartBtn {
-      margin-top: 10px;
       padding: 8px 16px;
       font-size: 16px;
       cursor: pointer;
@@ -37,6 +36,12 @@
     #timer {
       font-weight: bold;
       margin-top: 10px;
+    }
+    a {
+      color:black;
+      text-decoration: none;
+      padding: 8px 16px;
+      font-size: 16px;
     }
   </style>
 </head>
@@ -46,7 +51,11 @@
   <textarea id="inputArea" rows="4" placeholder="Start typing here..."></textarea>
   <div id="timer">Time: 0s</div>
   <div id="result"></div>
-  <button id="restartBtn">Restart</button>
+  <div style="display:flex; gap:10px;">
+    <button id="restartBtn">Restart</button>
+
+    <button id="see-results"><a href="test_results.html">See test results</a></button>
+  </div>
 
   <script>
     const testText = document.getElementById("testText").textContent;
