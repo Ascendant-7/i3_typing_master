@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register - TypingMaster</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        overflow-x: hidden;
+      }
+
+      .container {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 450px;
+        padding: 40px;
+        position: relative;
+        animation: slideUp 0.8s ease-out;
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .logo {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        border-radius: 50%;
+        margin: 0 auto 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+      }
+
+      .logo::before {
+        content: "⌨️";
+        font-size: 35px;
+      }
+
+      h1 {
+        color: #333;
+        font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      .subtitle {
+        color: #666;
+        font-size: 16px;
+      }
+
+      .form-group {
+        margin-bottom: 25px;
+        position: relative;
+      }
+
+      .form-group label {
+        display: block;
+        color: #555;
+        font-weight: 500;
+        margin-bottom: 8px;
+        font-size: 14px;
+      }
+
+      .input-container {
+        position: relative;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 15px 20px;
+        border: 2px solid #e1e5e9;
+        border-radius: 12px;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        background: #f8f9fa;
+      }
+
+      .form-group input:focus {
+        outline: none;
+        border-color: #667eea;
+        background: white;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(102, 126, 234, 0.1);
+      }
+
+      .form-group input:valid {
+        border-color: #28a745;
+      }
+
+      .strength-meter {
+        height: 4px;
+        background: #e1e5e9;
+        border-radius: 2px;
+        margin-top: 8px;
+        overflow: hidden;
+      }
+
+      .strength-fill {
+        height: 100%;
+        width: 0%;
+        transition: all 0.3s ease;
+        border-radius: 2px;
+      }
+
+      .strength-weak {
+        background: #dc3545;
+        width: 25%;
+      }
+      .strength-fair {
+        background: #ffc107;
+        width: 50%;
+      }
+      .strength-good {
+        background: #17a2b8;
+        width: 75%;
+      }
+      .strength-strong {
+        background: #28a745;
+        width: 100%;
+      }
+
+      .checkbox-group {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 30px;
+      }
+
+      .checkbox-group input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        margin: 0;
+        cursor: pointer;
+        accent-color: #667eea;
+      }
+
+      .checkbox-group label {
+        font-size: 14px;
+        color: #666;
+        line-height: 1.4;
+        cursor: pointer;
+        margin: 0;
+      }
+
+      .checkbox-group a {
+        color: #667eea;
+        text-decoration: none;
+      }
+
+      .checkbox-group a:hover {
+        text-decoration: underline;
+      }
+
+      .submit-btn {
+        width: 100%;
+        padding: 16px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 15px 35px rgba(102, 126, 234, 0.3);
+      }
+
+      .submit-btn:active {
+        transform: translateY(0);
+      }
+
+      .submit-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+
+      .submit-btn:hover::before {
+        left: 100%;
+      }
+
+      .login-link {
+        text-align: center;
+        margin-top: 25px;
+        color: #666;
+        font-size: 14px;
+      }
+
+      .login-link a {
+        color: #667eea;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .login-link a:hover {
+        text-decoration: underline;
+      }
+
+      .floating-shapes {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: -1;
+      }
+
+      .shape {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .shape:nth-child(1) {
+        width: 80px;
+        height: 80px;
+        top: 20%;
+        left: 10%;
+        animation-delay: 0s;
+      }
+
+      .shape:nth-child(2) {
+        width: 60px;
+        height: 60px;
+        top: 60%;
+        right: 15%;
+        animation-delay: 2s;
+      }
+
+      .shape:nth-child(3) {
+        width: 40px;
+        height: 40px;
+        bottom: 20%;
+        left: 20%;
+        animation-delay: 4s;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-20px) rotate(180deg);
+        }
+      }
+
+      @media (max-width: 480px) {
+        .container {
+          padding: 30px 25px;
+          margin: 10px;
+        }
+
+        h1 {
+          font-size: 24px;
+        }
+      }
+
+      .error-message {
+        color: #dc3545;
+        font-size: 12px;
+        margin-top: 5px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .error-message.show {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="floating-shapes">
+      <div class="shape"></div>
+      <div class="shape"></div>
+      <div class="shape"></div>
+    </div>
+
+    <div class="container">
+      <div class="header">
+        <div class="logo"></div>
+        <h1>Join TypingMaster</h1>
+        <p class="subtitle">Start your journey to typing excellence</p>
+      </div>
+
+      <form id="registrationForm">
+        <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" name="fullName" required />
+          <div class="error-message" id="nameError"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" required />
+          <div class="error-message" id="emailError"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" required />
+          <div class="error-message" id="usernameError"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required />
+          <div class="strength-meter">
+            <div class="strength-fill" id="strengthFill"></div>
+          </div>
+          <div class="error-message" id="passwordError"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            name="confirmPassword"
+            required
+          />
+          <div class="error-message" id="confirmError"></div>
+        </div>
+
+        <div class="checkbox-group">
+          <input type="checkbox" id="terms" name="terms" required />
+          <label for="terms">
+            I agree to the
+            <a href="#" onclick="showTerms()">Terms of Service</a> and
+            <a href="#" onclick="showPrivacy()">Privacy Policy</a>
+          </label>
+        </div>
+
+        <button type="submit" class="submit-btn">Create Account</button>
+      </form>
+
+      <div class="login-link">
+        Already have an account?
+        <a href="#" onclick="goToLogin()">Sign in here</a>
+      </div>
+    </div>
+
+    <script>
+      const form = document.getElementById("registrationForm");
+      const passwordInput = document.getElementById("password");
+      const confirmPasswordInput = document.getElementById("confirmPassword");
+      const strengthFill = document.getElementById("strengthFill");
+
+      // Password strength checker
+      passwordInput.addEventListener("input", function () {
+        const password = this.value;
+        const strength = checkPasswordStrength(password);
+        updateStrengthMeter(strength);
+      });
+
+      function checkPasswordStrength(password) {
+        let score = 0;
+        if (password.length >= 8) score++;
+        if (/[a-z]/.test(password)) score++;
+        if (/[A-Z]/.test(password)) score++;
+        if (/[0-9]/.test(password)) score++;
+        if (/[^A-Za-z0-9]/.test(password)) score++;
+        return score;
+      }
+
+      function updateStrengthMeter(strength) {
+        strengthFill.className = "strength-fill";
+        if (strength <= 1) {
+          strengthFill.classList.add("strength-weak");
+        } else if (strength <= 2) {
+          strengthFill.classList.add("strength-fair");
+        } else if (strength <= 3) {
+          strengthFill.classList.add("strength-good");
+        } else {
+          strengthFill.classList.add("strength-strong");
+        }
+      }
+
+      // Form validation
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        let isValid = true;
+
+        // Reset errors
+        document.querySelectorAll(".error-message").forEach((error) => {
+          error.classList.remove("show");
+        });
+
+        // Validate full name
+        const fullName = document.getElementById("fullName").value.trim();
+        if (fullName.length < 2) {
+          showError("nameError", "Name must be at least 2 characters long");
+          isValid = false;
+        }
+
+        // Validate email
+        const email = document.getElementById("email").value.trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          showError("emailError", "Please enter a valid email address");
+          isValid = false;
+        }
+
+        // Validate username
+        const username = document.getElementById("username").value.trim();
+        if (username.length < 3) {
+          showError(
+            "usernameError",
+            "Username must be at least 3 characters long"
+          );
+          isValid = false;
+        }
+
+        // Validate password
+        const password = passwordInput.value;
+        if (checkPasswordStrength(password) < 3) {
+          showError(
+            "passwordError",
+            "Password is too weak. Use at least 8 characters with mixed case, numbers, and symbols"
+          );
+          isValid = false;
+        }
+
+        // Validate password confirmation
+        const confirmPassword = confirmPasswordInput.value;
+        if (password !== confirmPassword) {
+          showError("confirmError", "Passwords do not match");
+          isValid = false;
+        }
+
+        // Validate terms
+        const terms = document.getElementById("terms").checked;
+        if (!terms) {
+          alert("Please accept the Terms of Service and Privacy Policy");
+          isValid = false;
+        }
+
+        if (isValid) {
+          // Simulate successful registration
+          const submitBtn = document.querySelector(".submit-btn");
+          submitBtn.innerHTML = "Creating Account...";
+          submitBtn.disabled = true;
+
+          setTimeout(() => {
+            alert("Account created successfully! Welcome to TypingMaster!");
+            form.reset();
+            strengthFill.className = "strength-fill";
+            submitBtn.innerHTML = "Create Account";
+            submitBtn.disabled = false;
+          }, 2000);
+        }
+      });
+
+      function showError(elementId, message) {
+        const errorElement = document.getElementById(elementId);
+        errorElement.textContent = message;
+        errorElement.classList.add("show");
+      }
+
+      // Add input animations
+      document.querySelectorAll("input").forEach((input) => {
+        input.addEventListener("focus", function () {
+          this.parentElement.style.transform = "scale(1.02)";
+        });
+
+        input.addEventListener("blur", function () {
+          this.parentElement.style.transform = "scale(1)";
+        });
+      });
+
+      // Mock functions for navigation
+      function goToLogin() {
+        alert("Redirecting to login page...");
+      }
+
+      function showTerms() {
+        alert("Terms of Service would be displayed here");
+      }
+
+      function showPrivacy() {
+        alert("Privacy Policy would be displayed here");
+      }
+    </script>
+  </body>
+</html>
