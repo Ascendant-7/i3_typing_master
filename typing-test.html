@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Typing Test</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    #testText {
+      padding: 10px;
+      background: #f0f0f0;
+      border-radius: 8px;
+    }
+    #inputArea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    #restartBtn {
+      margin-top: 10px;
+      padding: 8px 16px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    #timer {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Typing Speed Test</h2>
+  <p id="testText">The quick brown fox jumps over the lazy dog.</p>
+  <textarea id="inputArea" rows="4" placeholder="Start typing here..."></textarea>
+  <div id="timer">Time: 0s</div>
+  <div id="result"></div>
+  <button id="restartBtn">Restart</button>
+
+  <script>
+    const testText = document.getElementById("testText").textContent;
+    const inputArea = document.getElementById("inputArea");
+    const result = document.getElementById("result");
+    const timerDisplay = document.getElementById("timer");
+    const restartBtn = document.getElementById("restartBtn");
+
+    let startTime = null;
+    let timerInterval = null;
+
+    function updateTimer() {
+      const now = new Date();
+      const seconds = Math.floor((now - startTime) / 1000);
+      timerDisplay.textContent = `Time: ${seconds}s`;
+    }
+
+    function resetTest() {
+      clearInterval(timerInterval);
+      inputArea.value = "";
+      inputArea.disabled = false;
+      result.textContent = "";
+      timerDisplay.textContent = "Time: 0s";
+      startTime = null;
+      timerInterval = null;
+      inputArea.focus();
+    }
+
+    inputArea.addEventListener("input", () => {
+      if (!startTime && inputArea.value.trim().length > 0) {
+        startTime = new Date();
+        timerInterval = setInterval(updateTimer, 1000);
+      }
+
+      if (inputArea.value.trim() === testText) {
+        const endTime = new Date();
+        clearInterval(timerInterval);
+        const timeTaken = (endTime - startTime) / 1000 / 60;
+        const wordCount = testText.trim().split(/\s+/).length;
+        const wpm = Math.round(wordCount / timeTaken);
+        result.textContent = `Completed! Your speed: ${wpm} WPM`;
+        inputArea.disabled = true;
+      }
+    });
+
+    restartBtn.addEventListener("click", resetTest);
+
+    window.onload = () => inputArea.focus();
+  </script>
+</body>
+</html>
